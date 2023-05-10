@@ -1,0 +1,89 @@
+#define LED_CONSTITUCION 13
+#define LED_SANJUAN 12
+#define LED_INDEPENDENCIA 11
+#define LED_MORENO 10
+#define PULSADOR 9
+
+#define A 7
+#define B 8
+#define C A1
+#define D A2
+#define E A3
+#define F 6
+#define G 5
+
+#define PIEZO A0
+
+#define TIEMPO_OFF 300
+#define TIEMPO_ON 700
+
+void apagarLeds();
+void prendeLed(int pin1, int pin2, int pin3,int pin4,int pin5,int pin6,int pin7);
+
+
+
+void setup()
+{
+    for(int i = 5; i <=13; i++)
+  {
+    pinMode(i,OUTPUT);
+  }
+  pinMode(PIEZO,OUTPUT);
+  pinMode(C,OUTPUT);
+  pinMode(D,OUTPUT);
+  pinMode(E,OUTPUT);
+  pinMode(PULSADOR, INPUT_PULLUP);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  //1
+  digitalWrite(LED_CONSTITUCION,HIGH);
+  prendeLed(0,B,C,0,0,0,0);
+  apagarLeds();
+  digitalWrite(LED_CONSTITUCION,LOW);
+
+  //2
+  digitalWrite(LED_SANJUAN,HIGH);
+  prendeLed(A,B,0,D,E,0,G);
+  apagarLeds();
+  digitalWrite(LED_SANJUAN,LOW);
+  
+  //3
+  digitalWrite(LED_INDEPENDENCIA,HIGH);
+  prendeLed(A,B,C,D,0,0,G);
+  apagarLeds();
+  digitalWrite(LED_INDEPENDENCIA,LOW);
+  
+  //4
+  digitalWrite(LED_MORENO,HIGH);
+  prendeLed(0,B,C,0,0,F,G);
+  apagarLeds();
+  digitalWrite(LED_MORENO,LOW);
+}
+
+void prendeLed(int pin1, int pin2, int pin3,int pin4,int pin5,int pin6,int pin7)
+{
+  digitalWrite(pin1,LOW);
+  digitalWrite(pin2,LOW);
+  digitalWrite(pin3,LOW);
+  digitalWrite(pin4,LOW);
+  digitalWrite(pin5,LOW);
+  digitalWrite(pin6,LOW);
+  digitalWrite(pin7,LOW);
+  delay(TIEMPO_ON);
+  
+}
+void apagarLeds()
+{
+  for(int i = 5; i <=8; i++)
+  {
+    digitalWrite(i,HIGH);
+    
+  }
+  digitalWrite(C,HIGH);
+  digitalWrite(D,HIGH);
+  digitalWrite(E,HIGH);
+  delay(TIEMPO_OFF);
+}
